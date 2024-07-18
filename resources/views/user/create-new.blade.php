@@ -4,6 +4,7 @@
 
 
 
+
 <div class="main-content">
 
 <div class="page-content">
@@ -40,22 +41,6 @@
 <form action = "{{url('/addincident')}}" method="post">
 @csrf
 
-<div class="ttop-menu">
-                <nav>
-                    <button style="margin-left:10px;background-color:transparent;border-style:none;transform:scale(1.2);"><i class='bx bx-arrow-back'></i></button>
-                    <button style="background-color:transparent;border-style:none;transform:scale(2);"><i class='bx bx-menu'></i></button>
-                    <h6 style="margin-top:5px;margin-left:5px;">Incident <br>New Record</h6>
-                    <div style="margin-top:5px;margin-left:700px;">
-                        <button style="background-color:transparent;border-style:none;"><a href="" style="text-decoration:none;color:black;"><span class="material-symbols-outlined">attach_file</span></a></button>
-                        <button style="background-color:transparent;border-style:none;"><a href="" style="text-decoration:none;color:black;"><span class="material-symbols-outlined">instant_mix</span></a></button>
-                        <button style="background-color:transparent;border-style:none;transform:scale(1.3)"><a href="" style="text-decoration:none;color:black;"><i class='bx bx-dots-horizontal-rounded'></i></a></button>
-                        
-                        <input type="submit" name="" id="" value="sub">
-                    </div>
-                    
-                </nav>
-
-</div>
 <div class="row">
 <div class="col-lg-6">
 <div class="mb-3">
@@ -90,7 +75,7 @@
 <div class="col-lg-6">
 <div class="mb-3">
     <label class="form-label">Caller</label>
-    <select class="form-control select2-search-disable" name = 'contact_type' readonly>
+    <select class="form-control select2-search-disable" name = 'caller' readonly>
      
      <option>{{ Auth::user()->name }}</option>
    
@@ -186,30 +171,6 @@
 </div>
 
 
-<div class="col-lg-6">
-<div class="mb-0">
-    <label class="form-label">Urgency</label>
-    <select class="form-control select2-search-disable"  id="urgencySelect" onchange="updatePriority()" name = 'urgency'>
-        <option>1-High</option>
-        <option>2-Moderate</option>
-        <option>3-Low</option>
-      
-    </select>
-
-</div>
-
-</div>
-</div> 
-<div class="row">
-<div class="col-lg-6">
-<div class="mb-3">
-    <label class="form-label">Business Service</label>
-    <input type="text" class="form-control" id="basicpill-phoneno-input" name = 'business_service'>
-
-</div>
-
-
-</div>
 
 
 <div class="col-lg-6">
@@ -251,27 +212,51 @@
         <option>Database</option>
     </select>
 </div>
+
+</div>
+
+<div class="row">
+<div class="col-lg-6">
+<div class="mb-3">
+    <label class="form-label">Assign to</label>
+    <input type="text" class="form-control" id="basicpill-phoneno-input"name = 'assignment_to'>
+
+</div>
+
+
+</div>
+
+
 <div class="col-lg-6">
     <div class="mb-0">
-        <label class="form-label">Assign to</label>
-        <input type="text" class="form-control" id="basicpill-phoneno-input" name = 'assignment_to'>
+    <label class="form-label">User id</label>
+    <select class="form-control select2-search-disable" name = 'userid' readonly>
+     
+     <option>{{ Auth::user()->id }}</option>
+   
+   
+ </select>
+</div>
 
-    </div>
-    
 </div>
-</div>
-<div class="mb-3">
-                                                                   
-<label class="form-label" for="basicpill-address-input">Short Description</label>
-                                                                    <textarea id="basicpill-address-input" class="form-control" rows="1"  name = 'short_description'></textarea>
-                                                                </div>
+
+
 
                                                                 <div class="mb-3">
                                                                     <label class="form-label" for="basicpill-address-input">Description</label>
                                                                     <textarea id="basicpill-address-input" class="form-control" rows="3"  name = 'description'></textarea>
                                                                 </div>
+
+
 </div>
 
+
+<div class="col-xl-3 col-lg-4 col-sm-6 mb-2">
+                                                <div class="p-3">
+                                                   
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light" id="">SUBMIT</button>
+                                                </div>
+                                            </div>
 </form> 
 
 </div>
@@ -313,9 +298,6 @@
 <!-- end main content-->
 
 </div>
-<!-- END layout-wrapper -->
-
-
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
@@ -333,6 +315,8 @@
 
 </div>
 <!-- end main content-->
+
+
 
 @extends('admin.footer')
 
@@ -447,4 +431,32 @@
     // Call the function to set the auto-filled number when the page loads
     setAutoFilledNumber();
 </script>
+
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- Sweet Alerts js -->
+        <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+        <!-- Sweet alert init js-->
+        <script src="assets/js/pages/sweet-alerts.init.js"></script>
+
+        <script src="assets/js/app.js"></script>
+
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+<!-- Sweet Alert-->
+<link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Bootstrap Css -->
+<link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<!-- Icons Css -->
+<link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+<!-- App Css-->
+<link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 

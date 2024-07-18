@@ -1,4 +1,4 @@
-
+@extends('layouts.app')
 @extends('admin.sidenav')
 
 
@@ -40,7 +40,7 @@
                             </div>
                             <div class="avatar-sm">
                                 <span class="avatar-title bg-light text-success rounded-3">
-                                    <i class="mdi mdi-currency-usd font-size-24"></i>  
+                                <i style="color:red; font-size:30px"class="dripicons-warning"></i>
                                 </span>
                             </div>
                         </div>                                              
@@ -76,7 +76,7 @@
                             </div>
                             <div class="avatar-sm">
                                 <span class="avatar-title bg-light text-success rounded-3">
-                                    <i class="mdi mdi-currency-btc font-size-24"></i>  
+                                <i  style="color:red; font-size:30px" class=" ri-timer-2-line"></i> 
                                 </span>
                             </div>
                         </div>                                              
@@ -98,7 +98,7 @@
                             </div>
                             <div class="avatar-sm">
                                 <span class="avatar-title bg-light text-primary rounded-3">
-                                    <i class="ri-shopping-cart-2-line font-size-24"></i>  
+                                <i class="ri-folder-open-line"></i>   
                                 </span>
                             </div>
                         </div>                                            
@@ -143,43 +143,7 @@
             </div><!-- end col -->
         </div><!-- end row -->
 
-
-
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="row">
+   <div class="row">
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
@@ -430,7 +394,10 @@
     </div> <!-- container-fluid -->
 </div>
 <!-- End Page-content -->
+</div>
+<!-- end main content-->
 
+</div>
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">

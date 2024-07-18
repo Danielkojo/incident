@@ -38,9 +38,9 @@ Auth::routes();
 
 // Route::get('/page3', [userController::class, 'page3'])->name('row2.page3')->middleware('check.row');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('check.row');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.overview')->middleware('check.row');
 
-Route::get('/page3', [App\Http\Controllers\HomeController::class, 'page3'])->name('home');
+Route::get('/page3', [App\Http\Controllers\HomeController::class, 'page3'])->name('user.create.new');
 
 
 Route::get('/create', function () {
@@ -65,10 +65,24 @@ Route::get('/resinfo', function () {
     return view('admin.resolution-info');
 
 });
+Route::get('/history',[HomeController::class,'historyy']);
+
+
+Route::get('/historry', function () {
+    return view('user.history');
+
+});
+
+Route::get('/incidentedit', function () {
+    return view('admin.editincident');
+
+});
 
 
 
 Route::post('/addincident',[HomeController::class,'addinci',]);
+
+Route::post('/adddincident',[HomeController::class,'adddinci',]);
 Route::get('assigned',[HomeController::class,'getassigned']);
 
 
@@ -82,8 +96,13 @@ Route::get('/all',[HomeController::class,'getall']);
 Route::get('/resolved',[HomeController::class,'getresolve']);
 
 Route::get('/overview',[HomeController::class,'getoverview']);
+Route::get('/roledit',[HomeController::class,'getuser']);
+
+Route::get('/editrole-{id}',[HomeController::class,'editroll']);
 
 
+Route::post('/postrole/{id}',[HomeController::class,'posteditroll']);
+Route::post('/upload',[HomeController::class,'store']);
 
 
 

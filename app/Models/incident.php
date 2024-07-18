@@ -26,5 +26,6 @@ class incident extends Model
  'assignment_to',
  'short_description',
  'description',
+ 'userid',
     ];
 }

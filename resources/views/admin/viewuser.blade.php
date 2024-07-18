@@ -1,43 +1,38 @@
 
 @extends('admin.sidenav')
-
-
-<!-- ============================================================== -->
-<!-- Start right Content here -->
-<!-- ============================================================== -->
 <div class="main-content">
 
-    <div class="page-content">
-        <div class="container-fluid">
+<div class="page-content">
+    <div class="container-fluid">
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Resolved Incident</h4>
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0">open Unassigned</h4>
 
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
-                                <li class="breadcrumb-item active">Resolved Incident</li>
-                            </ol>
-                        </div>
-
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                            <li class="breadcrumb-item active">Open Unassigned</li>
+                        </ol>
                     </div>
+
                 </div>
             </div>
-            <!-- end page title -->
-            
-           
+        </div>
+        <!-- end page title -->
+        
+       
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
 
-                            <h4 class="card-title"></h4>
-                            <p class="card-title-desc">
-                            </p>
+                        <h4 class="card-title"></h4>
+                        <p class="card-title-desc">
+                        </p>
                         <div class="top-menu">
                             <nav>
                                 <button style="margin-left: 10px; background-color:transparent ;border-style: none;transform: scale(2);"><i class='bx bx-menu'></i></button>
@@ -59,39 +54,71 @@
 </div>
 
 <!-- Table to display the data -->
-<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-    <thead>
-        <tr>
-            <th>Number</th>
-            <th>opened</th>
-            <th>short description</th>
-            <th>caller</th>
-            <th>priority</th>
-            <th>State</th>
-            <th>Category</th>
-            <th>Assignment group</th>
-            <th>Assigned to</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- The table rows will be generated dynamically based on the data -->
-        @foreach($get as $data)
-        <tr>
-            <td name="number">{{ $data->number }}</td>
-            <td name="contact_type">{{ $data->created_at }}</td>
-            <td name="contact_type">{{ $data->short_description }}</td>
-            <td name="caller">{{ $data->caller }}</td>
-            <td name="priority">{{ $data->priority }}</td>
-            <td name="state">{{ $data->state }}</td>
-            <td name="category">{{ $data->category }}</td>
-            <td name="assignment_group">{{ $data->assignment_group }}</td>
-            <td name="assignment_to">{{ $data->assignment_to }}</td>
-        </tr>
-        @endforeach
-    </tbody>
-
-    
-</table>
+<div class="table-responsive">
+                            <table class="table table-editable table-nowrap align-middle table-edits">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Edit</th>
+                                  
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($get as $data)
+                                    <tr data-id="1">
+                                        <td data-field="id" style="width: 80px">{{ $data->id }}</td>
+                                        <td data-field="name">{{ $data->name }}</td>
+                                        <td data-field="email">{{ $data->email }}</td>
+                                        <td data-field="row">{{ $data->row }}</td>
+                                        <td style="width: 100px">
+                                           
+                                
+                                
+                                        
+                                       
+                                        </td>
+                                        <td><a href="{{'/editrole-'.$data->id}}"><i class="fas fa-pencil-alt"></i></a></td>
+                                    </tr>
+                                    @endforeach
+                                  
+                                </tbody>
+                                </table>
+                                <!-- <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+        
+                                        <h4 class="card-title"></h4>
+                                        <p class="card-title-desc">
+        
+                                        <div>
+                                            <form action="{{url('/upload')}" class="dropzone" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="fallback">
+                                                    <input name="avatar" type="file" >
+                                                </div>
+                                                <div class="dz-message needsclick">
+                                                    <div class="mb-3">
+                                                        <i class="display-4 text-muted ri-upload-cloud-2-line"></i>
+                                                    </div>
+                                                    
+                                                    <h4>Drop files here or click to upload.</h4>
+                                                </div>
+                                                <div class="text-center mt-4">
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Send Files</button>
+                                        </div>
+                                            </form>
+                                        </div>
+        
+                                        
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> -->
+                    </div>
 
 
                     </div>
@@ -123,11 +150,13 @@
 </footer>
 
 </div>
+<!-- end main content-->
 
-     
-
+</div>
+<!-- END layout-wrapper -->
 
 @extends('admin.footer')
+
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -282,3 +311,32 @@
         handlePagination();
     });
 </script>
+
+ <!-- JAVASCRIPT -->
+ <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- Magnific Popup-->
+        <script src="assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+        <!-- lightbox init js-->
+        <script src="assets/js/pages/lightbox.init.js"></script>
+
+        <script src="assets/js/app.js"></script>
+
+         <!-- App favicon -->
+         <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+<!-- Lightbox css -->
+<link href="assets/libs/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+
+<!-- Bootstrap Css -->
+<link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+<!-- Icons Css -->
+<link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+<!-- App Css-->
+<link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+<script src="assets/libs/dropzone/min/dropzone.min.js"></script>

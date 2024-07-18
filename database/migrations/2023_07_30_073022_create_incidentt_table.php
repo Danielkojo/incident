@@ -30,6 +30,7 @@ return new class extends Migration
             $table->String('assignment_to');
             $table->String('short_description');
             $table->String('description');
+            $table->String('userid');
             $table->timestamps();
         });
     }

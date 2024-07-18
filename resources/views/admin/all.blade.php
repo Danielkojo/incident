@@ -3,6 +3,7 @@
 
 <div class="main-content">
 
+
 <div class="page-content">
     <div class="container-fluid">
 
@@ -34,19 +35,7 @@
                         <h4 class="card-title"></h4>
                         <p class="card-title-desc">
                             <div class="ttop-menu">
-                                <nav>
-                                    <button style="margin-left:10px;background-color:transparent;border-style:none;transform:scale(1.2);"><i class='bx bx-arrow-back'></i></button>
-                                    <button style="background-color:transparent;border-style:none;transform:scale(2);"><i class='bx bx-menu'></i></button>
-                                    <h6 style="margin-top:5px;margin-left:5px;">Incident <br>New Record</h6>
-                                    <div style="margin-top:5px;margin-left:700px;">
-                                        <button style="background-color:transparent;border-style:none;"><a href="" style="text-decoration:none;color:black;"><span class="material-symbols-outlined">attach_file</span></a></button>
-                                        <button style="background-color:transparent;border-style:none;"><a href="" style="text-decoration:none;color:black;"><span class="material-symbols-outlined">instant_mix</span></a></button>
-                                        <button style="background-color:transparent;border-style:none;transform:scale(1.3)"><a href="" style="text-decoration:none;color:black;"><i class='bx bx-dots-horizontal-rounded'></i></a></button>
-                                        <button style="background-color:white;border-style:none;height:40px;opacity:0.6;"><a href="" style="text-decoration:none;color:black;">Submit</a></button>
-                                        <button style="background-color:white;border-style:none;height:40px;opacity:0.6;"><a href="" style="text-decoration:none;color:black;">Resolve</a></button>
-                                    </div>
-                                    
-                                </nav>  
+                               
                         </p>
                         <div class="top-menu">
                             <nav>
@@ -55,45 +44,58 @@
                             </nav>
                         </div>
 
-                        <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead>
-                            <tr>
-                               
-                            <th>Number</th>
-                                    <th>Opened</th>
-                                    <th>Short Description</th>
-                                    <th> Caller</th>
-                                    <th>Priority</th>
-                                    <th>State</th>
-                                    <th>Category</th>
-                                    <th>Assignment Group</th>
-                                    <th>Assigned To</th>
-                            </tr>
-                            </thead>
-                            @foreach($get as $get)
-                            <tr>
-                            <td name="number">{{$get->number}}</td>
-                            <td name="contact_type"> {{$get->created_at}}</td>
-                            <td name="contact_type"> {{$get->short_description}}</td>
-                            <td name="caller"> {{$get->caller}}</td>
-                            <td  name="priority">{{$get->priority}}</td>
-                            <td  name="state">{{$get->state}}</td>
-                            <td name="category">{{$get->category}}</td>
+                      <!-- Add the tab for selecting the number of rows -->
+<div class="row mb-2">
+    <div class="col">
+        <label for="rowsPerPage">Show:</label>
+        <select id="rowsPerPage" class="form-select form-select-sm" style="width: 70px;">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="25">25</option>
+        </select>
+    </div>
+</div>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<!-- Table to display the data -->
+<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+@csrf
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>opened</th>
+            <th>short description</th>
+            <th>caller</th>
+            <th>priority</th>
+            <th>State</th>
+            <th>Category</th>
+            <th>Assignment group</th>
+            <th>Assigned to</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- The table rows will be generated dynamically based on the data -->
+        @foreach($get as $data)
+        <tr>
+            <td name="number">{{ $data->number }}</td>
+            <td name="contact_type">{{ $data->created_at }}</td>
+            <td name="contact_type">{{ $data->short_description }}</td>
+            <td name="caller">{{ $data->caller }}</td>
+            <td name="priority">{{ $data->priority }}</td>
+            <td name="state">{{ $data->state }}</td>
+            <td name="category">{{ $data->category }}</td>
+            <td name="assignment_group">{{ $data->assignment_group }}</td>
+            <td name="assignment_to">{{ $data->assignment_to }}</td>
+        </tr>
+        @endforeach
+    </tbody>
 
-                      
-                            <td  name="assignment_group">{{$get->assignment_group}}</td>
-                            <td name="assignment_to">{{$get->assignment_to}}</td>
-                           
-                           
-                            </tr>
-                            @endforeach
-                         
+    
+</table>
 
-                            <tbody>
-                         
-                         
-                            </tbody>
-                        </table>
+<!-- Pagination -->
+
+
                     </div>
                 </div>
             </div> <!-- end col -->
@@ -131,16 +133,128 @@
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- JAVASCRIPT -->
-  <script src="assets/libs/jquery/jquery.min.js"></script>
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <!--tinymce js-->
-        <script src="assets/libs/tinymce/tinymce.min.js"></script>
+ 
+        
 
-        <!-- init js -->
-        <script src="assets/js/pages/form-editor.init.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const rowsPerPage = 5; // Set the initial number of rows per page
+        let currentPage = 1;
 
-        <script src="assets/js/app.js"></script>
+        // Function to handle the change in the number of rows to display
+        $("#rowsPerPage").change(function() {
+            const numRows = $(this).val();
+            showRows(numRows, 1);
+        });
+
+        // Function to show the specified number of rows in the table
+        function showRows(numRows, page) {
+            const startIndex = (page - 1) * numRows;
+            const endIndex = startIndex + numRows;
+
+            $("#datatable-buttons tbody tr").hide(); // Hide all rows
+            $("#datatable-buttons tbody tr").slice(startIndex, endIndex).show(); // Show the rows for the current page
+        }
+
+        // Function to handle pagination
+        function handlePagination() {
+            $("#prevPage").toggleClass("disabled", currentPage === 1);
+            $("#nextPage").toggleClass("disabled", currentPage === 3); // Change '3' to the total number of pages
+
+            $("#page1").toggleClass("active", currentPage === 1);
+            $("#page2").toggleClass("active", currentPage === 2);
+            $("#page3").toggleClass("active", currentPage === 3); // Change '3' to the total number of pages
+
+            showRows(rowsPerPage, currentPage);
+        }
+
+        // Function to move to the previous page
+        $("#prevPage").click(function() {
+            if (currentPage > 1) {
+                currentPage--;
+                handlePagination();
+            }
+        });
+
+        // Function to move to the next page
+        $("#nextPage").click(function() {
+            if (currentPage < 3) { // Change '3' to the total number of pages
+                currentPage++;
+                handlePagination();
+            }
+        });
+
+        // Function to navigate to a specific page when the corresponding page number is clicked
+        $("#page1").click(function() {
+            currentPage = 1;
+            handlePagination();
+        });
+
+        $("#page2").click(function() {
+            currentPage = 2;
+            handlePagination();
+        });
+
+        $("#page3").click(function() {
+            currentPage = 3; // Change '3' to the total number of pages
+            handlePagination();
+        });
+
+        // Show the initial number of rows on page load (e.g., 5 rows)
+        showRows(rowsPerPage, currentPage);
+        handlePagination();
+    });
+</script>
+
+<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+    <thead>
+        <!-- Header content (same as before) -->
+    </thead>
+    <tbody>
+        <!-- The table rows will be generated dynamically based on the data (same as before) -->
+    </tbody>
+</table>
+
+
+<style>
+
+    
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+</style>
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("datatable-buttons");
+        tr = table.getElementsByTagName("tr");
+        for (i = 1; i < tr.length; i++) { // Start loop from 1 to skip header row
+            var found = false; // Flag to check if the search query is found in any column
+            for (j = 0; j < tr[i].cells.length; j++) {
+                td = tr[i].cells[j];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        found = true;
+                        break; // Exit inner loop if match is found in any column
+                    }
+                }
+            }
+            if (found) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+</script>
